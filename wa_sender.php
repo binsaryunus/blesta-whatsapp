@@ -164,6 +164,7 @@ class WaSender extends Messenger
                 $this->log($to_user_id, json_encode($response, JSON_PRETTY_PRINT), 'output', false);
                 return null;
             } 
+            $recipient = str_replace('+', '', $recipient);
             // Send SMS
             try {
                 $response = $api->sendTextMessage(
