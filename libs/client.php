@@ -13,7 +13,7 @@ class WaSenderClient {
     }
 
     private function log($message) {
-        $log_file = __DIR__ . '/wa_sender.log';
+        $log_file = '/var/log/wa_sender.log';
         $log = '[' . date('Y-m-d H:i:s') . '] ' . $message . PHP_EOL;
         file_put_contents($log_file, $log, FILE_APPEND);
     }
@@ -26,9 +26,6 @@ class WaSenderClient {
             'number' => $data['number'],
             'message' => $data['message']
         );
-
-        $this->log('url: ' . $url);
-        $this->log('params: ' . json_encode($params, JSON_PRETTY_PRINT));
 
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
