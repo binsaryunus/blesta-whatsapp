@@ -1,6 +1,6 @@
 <?php
 // Basics
-$lang['WaSender.name'] = 'WA Sender';
+$lang['WaSender.name'] = 'WASender';
 $lang['WaSender.description'] = 'Send Blesta notifications using WA Sender.';
 
 
