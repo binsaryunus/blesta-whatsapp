@@ -1,0 +1,21 @@
+{
+    "name": "pedjoeangdigitalnetworks/whatsapp",
+    "description": "Blesta Messenger to Whatsapp Thru WA Sender",
+    "license": "proprietary",
+    "type": "blesta-messenger",
+    "require": {
+        "blesta/composer-installer": "~1.0"
+    },
+    "authors": [
+        {
+            "name": "Pedjoeang Digital Networks",
+            "homepage": "http://pedjoeangdigital.net"
+        }
+    ],
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true,
+            "blesta/composer-installer": true
+        }
+    }
+}

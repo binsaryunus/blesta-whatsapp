@@ -1,0 +1,14 @@
+{
+    "version": "2.1.0",
+    "name": "WaSender.name",
+    "description": "WaSender.description",
+    "authors": [
+        {
+            "name": "Pedjoeang Digital Networks",
+            "url": "http://www.pedjoeangdigital.net"
+        }
+    ],
+    "types": [
+        "sms"
+    ]
+}
