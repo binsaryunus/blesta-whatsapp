@@ -28,7 +28,7 @@ class WaSender extends Messenger
         Loader::loadHelpers($this, ['Html']);
 
         // Load the language required by this messenger
-        Language::loadLang('wasender', null, dirname(__FILE__) . DS . 'language' . DS);
+        Language::loadLang('wa_sender', null, dirname(__FILE__) . DS . 'language' . DS);
     }
 
     /**
@@ -64,12 +64,12 @@ class WaSender extends Messenger
         $fields->setField($apiKey);
 
         // API Url
-        $apiUrl = $fields->label(Language::_('Twilio.configuration_fields.api_url', true), 'wasender_api_url');
+        $apiUrl = $fields->label(Language::_('WaSender.configuration_fields.api_url', true), 'wasender_api_url');
         $apiUrl->attach(
             $fields->fieldText('api_url', (isset($vars['api_url']) ? $vars['api_url'] : null), ['id' => 'wasender_api_url'])
         );
         $apiUrl->attach(
-            $fields->tooltip(Language::_('Twilio.configuration_fields.api_url_help', true))
+            $fields->tooltip(Language::_('WaSender.configuration_fields.api_url_help', true))
         );
         $fields->setField($apiUrl);
 
@@ -151,10 +151,19 @@ class WaSender extends Messenger
 
             $params = [
                 'from' => $meta->phone_number,
-                'body' => $content
+                'body' => $content,
+                'to' => $recipient
             ];
             $this->log($to_user_id, json_encode($params, JSON_PRETTY_PRINT), 'input', true);
             
+            if (empty($recipient)) {
+                $response = [
+                    'status' => false,
+                    'message' => 'Recipient phone number is empty'
+                ];
+                $this->log($to_user_id, json_encode($response, JSON_PRETTY_PRINT), 'output', false);
+                return null;
+            } 
             // Send SMS
             try {
                 $response = $api->sendTextMessage(
