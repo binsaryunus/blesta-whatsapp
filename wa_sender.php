@@ -176,7 +176,9 @@ class WaSender extends Messenger
                     $content
                 );
 
-                $success = $response->status == true;
+
+                $json = json_decode($response);
+                $success =  $json->status == true;
 
                 $this->log($to_user_id, json_encode($response, JSON_PRETTY_PRINT), 'output', $success);
             } catch (\Exception $e) {
