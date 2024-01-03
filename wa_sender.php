@@ -143,6 +143,10 @@ class WaSender extends Messenger
                 ? (isset($user->phone_number->number) ? $user->phone_number->number : null)
                 : (isset($user->number_mobile) ? $user->number_mobile : null);
         
+        // remove any spaces or dashes or dot from the phone number
+        $recipient = str_replace([' ', '-', '.'], '', $recipient);
+        $recipient = str_replace(['+'], '', $recipient);
+        
         if ($type == 'sms') {
             // SMS allows up to 918 characters, by concatenating 6 messages of 153 characters each
             if (strlen($content) > 918) {
